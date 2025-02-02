@@ -1,31 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST</title>
-    <link rel="stylesheet" href="style.css">
- 
-    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
- 
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.154.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.154.0/examples/jsm/"
-             }
-         }
-     </script>
-     
-     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-</head>
-<body>
+<html>
 
-        <div id="container"></div>
-        <canvas class="webgl"></canvas>
-        <script type="module" src="./script.js"></script>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras/src/misc/line.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.1.2/dist/aframe-physics-system.min.js"></script>
+  </head>
 
-   </a-scene>
-</body>
+  <body>
+    <script>
+      // gravité
+      AFRAME.registerComponent("gravity", {
+        schema: { type: "number", default: -9.8 },
+        tick: function () {
+          var el = this.el;
+          var position = el.getAttribute("position");
+          position.y += this.data * 0.01; // Applique la gravité
+          el.setAttribute("position", position);
+        },
+      });
+
+      // attraper
+      AFRAME.registerComponent("click-grab", {
+        init: function () {
+          let el = this.el;
+          let scene = el.sceneEl;
+          let camera = document.querySelector("a-camera");
+          let isGrabbed = false;
+
+          function updatePosition(event) {
+            if (isGrabbed) {
+              let cameraPos = new THREE.Vector3();
+              let cameraQuat = new THREE.Quaternion();
+
+              camera.object3D.getWorldPosition(cameraPos);
+              camera.object3D.getWorldQuaternion(cameraQuat);
+
+              // Convertit la position de la souris en coordonnées 3D
+              let mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+              let mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+              let offset = new THREE.Vector3(mouseX * 0.5, mouseY * 0.5, -1); // Toujours devant
+              offset.applyQuaternion(cameraQuat); // Oriente l'objet devant la caméra
+
+              let newPosition = new THREE.Vector3();
+              newPosition.copy(cameraPos).add(offset);
+              el.object3D.position.copy(newPosition);
+            }
+          }
+
+          el.addEventListener("mousedown", function () {
+            console.log("Objet attrapé !");
+            isGrabbed = true;
+            el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
+            window.addEventListener("mousemove", updatePosition);
+          });
+
+          scene.addEventListener("mouseup", function () {
+            if (isGrabbed) {
+              console.log("Objet tombé !");
+              el.setAttribute(
+                "dynamic-body",
+                "mass: 1; restitution: 0.6; friction: 0.5"
+              ); // Réactive la gravité
+              isGrabbed = false;
+              window.removeEventListener("mousemove", updatePosition);
+            }
+          });
+        },
+      });
+    </script>
+
+    <a-scene stats physics="gravity: -9.8">
+      <!-- position : X Y Z -->
+      <!-- Axe X -->
+      <a-entity
+        line="start: 0 0 0; end: 5 0 0; color: red; opacity: 1;"
+      ></a-entity>
+      <a-text value="X" position="5 0 0" color="red" scale="3 3 3"></a-text>
+
+      <!-- Axe Y -->
+      <a-entity
+        line="start: 0 0 0; end: 0 5 0; color: green; opacity: 1;"
+      ></a-entity>
+      <a-text value="Y" position="0 5 0" color="green" scale="3 3 3"></a-text>
+
+      <!-- Axe Z -->
+      <a-entity
+        line="start: 0 0 0; end: 0 0 5; color: blue; opacity: 1;"
+      ></a-entity>
+      <a-text value="Z" position="0 0 5" color="blue" scale="3 3 3"></a-text>
+
+      <!-- Sol avec collision réaliste -->
+      <a-box
+        position="0 -0.5 0"
+        rotation="0 0 0"
+        width="10"
+        height="1"
+        depth="10"
+        color="#7BC8A4"
+        static-body
+      ></a-box>
+
+      <!-- Objet à attraper avec physique avancée -->
+      <a-box
+        id="grabbableBox"
+        position="0 1 -3"
+        width="0.5"
+        height="0.5"
+        depth="0.5"
+        color="red"
+        class="grabbable clickable"
+        dynamic-body="shape: box; mass: 1"
+        restitution="0.6"
+        friction="0.5"
+        grabbable
+        click-grab
+      ></a-box>
+
+      <a-entity
+        cursor="rayOrigin: mouse"
+        raycaster="objects: .clickable"
+      ></a-entity>
+
+      <!-- position : X Y Z -->
+
+      <!-- Modèle 3D à charger -->
+      <a-asset>
+        <a-asset-item id="Shelves" src="./models/Shelves.glb"></a-asset-item>
+      </a-asset>
+
+      <a-asset>
+        <a-asset-item id="Wall" src="./models/Brick_Wall.glb"></a-asset-item>
+      </a-asset>
+
+      <a-asset>
+        <a-asset-item id="Soda" src="./models/Soda_Can.glb"></a-asset-item>
+      </a-asset>
+
+      <!-- étagère -->
+
+      <!-- Cube avec gravité -->
+      <a-box position="0 5 -5" rotation="0 45 0" color="#4CC3D9" gravity dynamic-body></a-box>
+
+      <!-- Soda -->
+      <a-entity
+        id="soda"
+        gltf-model="#Soda"
+        position="0 2 0"
+        scale="1 1 1"
+        dynamic-body="shape: box; mass: 1; restitution: 0.6; friction: 0.5"
+        class="clickable"
+        click-grab
+      ></a-entity>
+
+      <!-- Murs du bâtiment -->
+      <a-entity
+        id="frontWall"
+        gltf-model="#Wall"
+        position="0 1 1"
+        scale="0.5 0.5 0.5"
+        static-body
+      ></a-entity>
+
+      <a-entity
+        id="backWall"
+        gltf-model="#Wall"
+        position="0 1 1"
+        scale="0.5 0.5 0.5"
+        static-body
+      ></a-entity>
+
+      <a-entity
+        id="leftWall"
+        gltf-model="#Wall"
+        position="1 1 0"
+        scale="0.5 0.5 0.5"
+        static-body
+      ></a-entity>
+
+      <a-entity
+        id="rightWall"
+        gltf-model="#Wall"
+        position="1 1 0"
+        scale="0.5 0.5 0.5"
+        static-body
+      ></a-entity>
+
+      <!-- Caméra et contrôleurs -->
+      <a-entity id="cameraRig" position="0 1.6 0">
+        <a-camera position="0 0 0" wasd-controls look-controls></a-camera>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
