@@ -102,7 +102,7 @@ function createObject(modelPath, scale, id) {
   const scene = document.querySelector('a-scene');
   const entity = document.createElement('a-entity');
   entity.setAttribute('gltf-model', modelPath);
-  entity.setAttribute('position', "6 4 -1.25");
+  entity.setAttribute('position', "6 6 -1.25");
   entity.setAttribute('scale', scale);
   entity.setAttribute('dynamic-body', "shape: box; mass: 1;");
   entity.setAttribute('click-grab', "");
@@ -114,7 +114,7 @@ function createObject(modelPath, scale, id) {
 }
 
 function MultipleObject() {
-  setInterval(RandomObject, 1500);
+  setInterval(RandomObject, 2000);
 }
 
 function init() {

@@ -23,6 +23,18 @@
         <a-entity id="leftController" oculus-touch-controls="hand: left" hand-grabber raycaster="showLine:true; objects: .collidable" cursor></a-entity>
         </a-entity>
       </a-entity>
+
+       <!-- Ambient Light -->
+       <a-light type="ambient" intensity="0.1" color="#FFFFFF"></a-light>
+      
+       <!-- Ceiling Light -->       
+        <a-light type="point" position="0 5 0" intensity="0.7" color="#FFFFFF" castShadow="true" angle="120" penumbra="0.8" target="#LED1"></a-light>
+     
+       <!-- Fire Light (Oscillating) -->
+       <a-light type="point" position="-9.5 2 -1.2" intensity="0.6" color="#FFA500" 
+       animation="property: light.intensity; from: 0.4; to: 0.6; dur:500; loop:true; dir:alternate; easing:easeInOutSine"></a-light>
+      
+                
     <!-- Ground -->
 <a-box id="ground" rotation="-90 0 0" position="0 -0.5 0" src="../models/ground.jpg" material="repeat: 1 1" width="25" height="25" static-body="shape:box"></a-box>
 <!-- Assets -->
@@ -38,7 +50,6 @@
   <!-- Props -->
   <a-asset-item id="Shelves" src="../models/Shelves.glb"></a-asset-item>
   <a-asset-item id="Soda" src="../models/Soda_Can.glb"></a-asset-item>
-  <a-asset-item id="Door" src="../models/door.glb"></a-asset-item>
   <a-asset-item id="Conveyor" src="../models/Conveyor.glb"></a-asset-item>
   <a-asset-item id="Fire" src="../models/Fire.glb"></a-asset-item>
   <a-asset-item id="Box" src="../models/Box.glb"></a-asset-item>
@@ -49,7 +60,8 @@
   <a-asset-item id="CPMouse" src="../models/CP_Mouse.glb"></a-asset-item>
   <a-asset-item id="LED" src="../models/LED.glb"></a-asset-item>
   <a-asset-item id="Bubble" src="../models/Bubble.glb"></a-asset-item>
-  <a-asset-item id="Box_Open" src="../models/Box_Open.glb"></a-asset-item>
+  <a-asset-item id="Extractor" src="../models/Extractorhood.glb"></a-asset-item>
+  <a-asset-item id="Door" src="../models/Doorway.glb"></a-asset-item>
 </a-assets>
 <!-- Entities -->
 <!-- Shelves -->
@@ -75,23 +87,24 @@
       <a-entity id="Fire" gltf-model="#Fire" position="-9.5 1.7 -1.2" scale="0.03 0.03 0.03">
       </a-entity>
 
-      <a-light type="point" intensity="0.5" color="red" animation="property: light.color; from:rgb(183, 28, 28); to:rgb(210, 61, 57); dur:300; loop:true; dir: alternate; autoplay: true; easing: easeInOutSine; keyframes: [{color: rgb(183, 28, 28)}, {color: rgb(200, 50, 50)}, {color: rgb(210,61, 57)}]"></a-light>
       <a-entity id="DepositZone" gltf-model="../models/Table.glb" position="-2.5 0.1 3" rotation="0 90 0" scale="2 5 2" static-body="shape:box">
-        <a-entity position="-0.12392 0.44209 0.12013" text="value: Deposit Zone Here; color: white; align: center; side: double; backgroundColor: white" look-at="#cameraRig"></a-entity>
+        <a-entity position="0 0.440 0" rotation="270 0 0" scale="3 3 3" text="value: Deposit Zone Here !; color: brown; align: center; side: double; backgroundColor: white" look-at="#cameraRig"></a-entity>
       </a-entity>
     </a-entity>
 
     <!-- wall -->
     <a-box id="FrontWall" position="0 3 -12.5" src="../models/brick-wall.jpg" width="25" height="10" static-body="shape:box" class="collidable"></a-box>
-    <a-box id="BackWall" position="0 3 12.5" rotation="0 180 0" src="../models/brick-wall.jpg" width="25" height="10" static-body="shape:box" class="collidable"></a-box>
+    <a-box id="BackWall" position="0 3 12.5" rotation="0 180 0" src="../models/brick-wall.jpg" width="25" height="10" static-body="shape:box" class="collidable">
+      <a-entity id="Door" gltf-model="#Door" position="-1.5 -3 1" scale="6 6 6" rotation="0 180 0" static-body="shape:box"></a-entity>
+    </a-box>
     <a-box id="LeftWall" position="-12.5 3 0" rotation="0 90 0" src="../models/brick-wall.jpg" width="25" height="10" static-body="shape:box" class="collidable"></a-box>
     <a-box id="RightWall" position="12.5 3 0" rotation="0 -90 0" src="../models/brick-wall.jpg" width="25" height="10" static-body="shape:box" class="collidable"></a-box>
 
     <!-- ceiling -->
     <a-plane id="Ceiling" position="0 7 0" rotation="90 0 0" src="../models/ceiling.jpg" width="25" height="25" roughness="0.5" >
-      <a-entity id="LED1" gltf-model="#LED" rotation="-90 0 0" scale="2 2 2" material="metalness: 1; roughness: 0; reflectivity: 1" ></a-entity>
-        <a-light type="point" position="0 -1 0" intensity="0.8" color="#F9F3C1"></a-light>
+      <a-entity id="LED1" gltf-model="#LED" rotation="270 0 0" scale="1.5 1.5 1.5" material="metalness: 1; roughness: 0; reflectivity: 1" ></a-entity>
       </a-entity>
+      <a-entity id="hood" gltf-model="#Extractor" position="6.2 -1.8 3.5" rotation="-90 0 0" scale="1 1 1" material="metalness: 1; roughness: 0; reflectivity: 1" ></a-entity>
     </a-plane>      
     <!-- Menu -->
     <a-entity id="StartMenu">
