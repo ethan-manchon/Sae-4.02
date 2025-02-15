@@ -1,0 +1,251 @@
+{
+    "Entities": [
+    {
+        "id": 1,
+        "class": "",
+        "name": "Person1",
+        "modelPath": "../models/Male1.glb"
+    },
+    {
+        "id": 2,
+        "class": "",
+        "name": "Person2",
+        "modelPath": "../models/Male2.glb"
+    },
+    {
+        "id": 3,
+        "class": "",
+        "name": "Person3",
+        "modelPath": "../models/Male3.glb"
+    },
+    {
+        "id": 4,
+        "class": "",
+        "name": "Person4",
+        "modelPath": "../models/Female1.glb"
+    },
+    {
+        "id": 5,
+        "class": "", 
+        "name": "Person5",
+        "modelPath": "../models/Female2.glb"
+    },
+    {
+        "id": 6,
+        "class": "",
+        "name": "Person6",
+        "modelPath": "../models/Female3.glb"
+    },
+    {
+        "id": 7,
+        "name": "Shelves",
+        "modelPath": "../models/Shelves.glb"
+    },
+    {
+        "id": 8,
+        "name": "Conveyor",
+        "modelPath": "../models/Conveyor.glb"
+    },
+    {
+        "id": 9,
+        "name": "Fire",
+        "modelPath": "../models/Fire.glb"
+    }
+],
+    "Items": [
+    {
+        "id": 1,
+        "name": "Banana",
+        "modelPath": "../models/Banana.glb",
+        "scale" : {
+            "x": 0.3,
+            "y": 0.3,
+            "z": 0.3
+        },
+        "attributes": {
+            "color": "yellow",
+            "shape": "square"
+        }
+    },
+    {
+        "id": 2,
+        "name": "CP_mouse",
+        "modelPath": "../models/CP_mouse.glb",
+        "scale" : {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.1
+        },
+        "attributes": {
+            "color": "gray",
+            "shape": "square"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Briefcase",
+        "modelPath": "../models/Briefcase.glb",
+        "scale" : {
+            "x": 1,
+            "y": 1,
+            "z": 1
+        },
+        "attributes": {
+            "color": "black",
+            "shape": "square"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Soda_Can",
+        "modelPath": "../models/Soda_Can.glb",
+        "scale" : {
+            "x": 1,
+            "y": 1,
+            "z": 1
+        },
+        "attributes": {
+            "color": "red",
+            "shape": "round"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Desk_Lamp",
+        "modelPath": "../models/Desk_Lamp.glb",
+        "scale" : {
+            "x": 0.1,
+            "y": 0.1,
+            "z": 0.1
+        },
+        "attributes": {
+            "color": "gray",
+            "shape": "round"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Box",
+        "modelPath": "../models/Box.glb",
+        "scale" : {
+            "x": 3,
+            "y": 3,
+            "z": 3
+        },
+        "attributes": {
+            "color": "brown",
+            "shape": "square"
+        }
+    }
+],
+    "Task": [
+    {
+        "id": 1,
+        "name": "Task_1",
+        "text": "Hello i need 5 red items, for my new project, can you give them to me ?",
+        "points": 10,
+        "needed": {
+            "red": 5
+        },
+        "time": 60
+    },
+    {
+        "id": 2,
+        "name": "Task_2",
+        "text": "Yo, i need 3 blue items and 3 square items, can you help me ?",
+        "points": 15,
+        "needed": {
+            "blue": 3,
+            "square": 3
+        },
+        "time": 60
+    },
+    {
+        "id": 3,
+        "name": "Task_3",
+        "text": "I need 10 green items, can you find them for me ?",
+        "points": 20,
+        "Needed": {
+            "green": 10
+        },
+        "time": 90
+    },
+    {
+        "id": 4,
+        "name": "Task_4",
+        "text": "Please bring me 7 yellow items and 5 square items.",
+        "points": 25,
+        "Needed": {
+            "yellow": 7,
+            "square": 5
+        },
+        "time": 90
+    },
+    {
+        "id": 5,
+        "name": "Task_5",
+        "text": "I require 8 red items and 8 triangular items.",
+        "points": 30,
+        "Needed": {
+            "red": 8,
+            "triangular": 8
+        },
+        "time": 120
+    },
+    {
+        "id": 6,
+        "name": "Task_6",
+        "text": "Can you find 12 blue items and 10 round items ?",
+        "points": 35,
+        "Needed": {
+            "blue": 12,
+            "round": 10
+        },
+        "time": 120
+    },
+    {
+        "id": 7,
+        "name": "Task_7",
+        "text": "I need 15 green items and 10 round items.",
+        "points": 40,
+        "Needed": {
+            "green": 15,
+            "round": 10
+        },
+        "time": 150
+    },
+    {
+        "id": 8,
+        "name": "Task_8",
+        "text": "Please bring me 10 yellow items and 10 square items.",
+        "points": 45,
+        "Needed": {
+            "yellow": 10,
+            "square": 10
+        },
+        "time": 150
+    },
+    {
+        "id": 9,
+        "name": "Task_9",
+        "text": "I require 12 red items and 10 triangular items.",
+        "points": 50,
+        "Needed": {
+            "red": 12,
+            "triangular": 10
+        },
+        "time": 150
+    },
+    {
+        "id": 10,
+        "name": "Task_10",
+        "text": "Can you find 15 blue items and 10 square items ?",
+        "points": 55,
+        "Needed": {
+            "blue": 15,
+            "square": 10
+        },
+        "time": 150
+    }
+]
+}
