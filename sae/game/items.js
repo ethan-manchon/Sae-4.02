@@ -18,9 +18,6 @@ function AskQuestion() {
   let questions = data.Task;
   let question = questions.find(item => item.id === randomNumberQuestion);
   let needed = question.needed || question.Needed;
-  for (let key in needed) {
-    console.log(`Needed ${key}: ${needed[key]}`);
-  }
   let texte = question.text;
   let person = document.querySelector(`.person${randomNumberPerson}`);
   let text = document.createElement('a-text');
@@ -31,6 +28,7 @@ function AskQuestion() {
   text.setAttribute('position', '0 2.25 0');
   text.setAttribute('text', 'width: 2.5; wrapCount: 30');
   person.appendChild(text);
+  console.log(needed);
 }
 
 function PersonArrival() {
@@ -51,23 +49,49 @@ function PersonArrival() {
   });
 }
 
-    // CONTINUER LA FONCTION ICI !!!
-function PersonDeparture() {
-  let question = data.Task.find(item => item.id === randomNumberQuestion);
-  let needed = question.needed || question.Needed;
-  let DepositZone = document.getElementById("DepositZone");
-  let objects = document.querySelectorAll('[dynamic-body]');
-  let objectDeposited = [];
-}
-
+  // CONTINUER LA FONCTION ICI !!!
+  function PersonDeparture() {
+    let question = data.Task.find(item => item.id === randomNumberQuestion);
+    let needed = question.needed || question.Needed;
+    let DepositZone = document.getElementById("DepositZone");
+    let objects = document.querySelectorAll('[dynamic-body]');
+    let objectDeposited = [];
+  }
+  
 function updateDepositedItems() {
-  const depositZone = new THREE.Box3().setFromObject(document.querySelector('#DepositZone').object3D);
+  // Create a bounding box for the deposit zone
+  const depositZoneEntity = document.querySelector('#DepositZone');
+  if (!depositZoneEntity) {
+      depositedItems = [];
+      return;
+  }
+  const depositZone = new THREE.Box3().setFromObject(depositZoneEntity.object3D);
+  // Filter objects that are inside the deposit zone
   depositedItems = objectsArray.filter(obj => {
-    const box = new THREE.Box3().setFromObject(obj.entity.object3D);
-    return box.intersectsBox(depositZone);
+      if (!obj.entity || !obj.entity.object3D) {
+          return false;
+      }
+      const box = new THREE.Box3().setFromObject(obj.entity.object3D);
+      return box.intersectsBox(depositZone);
+  }).map(obj => {
+      let itemData = data.Items.find(item => item.modelPath === obj.entity.getAttribute('gltf-model'));
+      return itemData ? itemData.attributes : null;
+  }).filter(item => item !== null);
+  // Create an attribute counter
+  let attributeCounter = {};
+  depositedItems.forEach(attributes => {
+      Object.entries(attributes).forEach(([key, value]) => {
+          let attributeKey = `${key}:${value}`;
+          attributeCounter[attributeKey] = (attributeCounter[attributeKey] || 0) + 1;
+      });
   });
+  // Convert attributeCounter to an array format and store in depositedItems
+  depositedItems = Object.entries(attributeCounter).map(([attribute, count]) => {
+      let [key, value] = attribute.split(':');
+      return { key, value, count };
+  });
+  console.log(depositedItems);
 }
-
 function MoveTheObjects() {
   const conveyorBox = new THREE.Box3().setFromObject(document.querySelector('#conveyor').object3D);
   objectsArray.forEach(obj => {
@@ -86,7 +110,6 @@ function MoveTheObjects() {
     }
   });
   updateDepositedItems();
-  console.log('Deposited Items:', depositedItems);
   requestAnimationFrame(MoveTheObjects);
 }
 
