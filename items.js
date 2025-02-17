@@ -81,6 +81,7 @@ function PersonArrival() {
   });
 }
 
+
 function updateDepositedItems() {
   // Create a bounding box for the deposit zone
   const depositZoneEntity = document.querySelector("#DepositZone");
