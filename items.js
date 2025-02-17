@@ -250,7 +250,6 @@ function createObject(modelPath, scale, id) {
   entity.setAttribute("dynamic-body", "shape: box; mass: 1;");
   entity.setAttribute("click-grab", "");
   entity.setAttribute("oculus-grab", "");
-  entity.setAttribute("kinematic-body", "");
   entity.setAttribute("id", `${id}-${Date.now()}`);
   entity.setAttribute("class", "collidable");
   scene.appendChild(entity);

@@ -3,9 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <title>Convoyor the game</title>
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@master/dist/aframe-physics-system.min.js"></script>
-      </head>
+      <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@master/dist/aframe-physics-system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@master/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-text-geometry-component@latest/dist/aframe-text-geometry-component.min.js"></script>
+  </head>
 <body>
     <script src="items.js"></script>
     <a-scene stats id="scene" physics="gravity: -9.8; debug: true" shadow="type: pcfsoft">
@@ -21,12 +24,9 @@
         <a-entity id="leftController" oculus-touch-controls="hand: left" hand-grabber raycaster="showLine:true; objects: .collidable" cursor></a-entity>
         </a-entity>
       </a-entity>
-
-       <!-- Ambient Light -->
-       <a-light type="ambient" intensity="0.1" color="#FFFFFF"></a-light>
       
        <!-- Ceiling Light -->       
-        <a-light type="point" position="0 5 0" intensity="0.7" color="#FFFFFF" castShadow="true" angle="120" penumbra="0.8" target="#LED1"></a-light>
+        <a-light type="point" position="0 5 0" intensity="0.7" color="#CCC" castShadow="true" angle="120" penumbra="0.8" target="#LED1"></a-light>
      
        <!-- Fire Light (Oscillating) -->
        <a-light type="point" position="-9.5 2 -1.2" intensity="0.6" color="#FFA500" 
