@@ -14,9 +14,9 @@ Le jeu permet aux joueurs d'apprendre l'anglais de manière interactive en manip
 
 🛠 Technologies utilisées
 
-🎮 A-Frame – Framework pour la VR en navigateur🌐 HTML, CSS, JavaScript – Structure et interactivité du jeu
+🎮 A-Frame – Framework pour la VR en navigateur<br>🌐 HTML, CSS, JavaScript – Structure et interactivité du jeu<br>
 
-🛠 Fonctionnalités
+🛠 Fonctionnalités<br>
 
-✅ Expérience immersive en VR et sur navigateur✅ Gameplay interactif basé sur la manipulation d'objets✅ Apprentissage de nouveaux mots en anglais dans un contexte ludique✅ Développement rapide en une semaine avec des modèles low-poly libres de droit
+✅ Expérience immersive en VR et sur navigateur<br>✅ Gameplay interactif basé sur la manipulation d'objets<br>✅ Apprentissage de nouveaux mots en anglais dans un contexte ludique<br>✅ Développement rapide en une semaine avec des modèles low-poly libres de droit
 
