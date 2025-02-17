@@ -14,7 +14,7 @@ Le jeu permet aux joueurs d'apprendre l'anglais de manière interactive en manip
 
 🛠 Technologies utilisées
 
-🎮 A-Frame – Framework pour la VR en navigateur<br>🌐 HTML, CSS, JavaScript – Structure et interactivité du jeu<br>
+🎮 A-Frame – Library pour la webVR en navigateur<br>🌐 HTML, CSS, JavaScript – Structure et interactivité du jeu<br>
 
 🛠 Fonctionnalités<br>
 
