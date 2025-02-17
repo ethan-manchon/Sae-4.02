@@ -186,9 +186,22 @@ function PersonDeparture() {
     let entity = document.querySelector(`.person${randomNumberPerson}`);
 
     depositedItems = []; // Reset deposited items after person departure
-
-    for (let obj of objectsArray) {
-      if (obj.entity) obj.entity.parentNode.removeChild(obj.entity);
+    
+    // Supprime les objets qui sont en contact avec la table (DepositZone)
+    const depositZoneEntity = document.querySelector("#DepositZone");
+    if (depositZoneEntity) {
+      const depositZone = new THREE.Box3().setFromObject(depositZoneEntity.object3D);
+      objectsArray = objectsArray.filter((obj) => {
+      if (!obj.entity || !obj.entity.object3D) {
+        return true;
+      }
+      const box = new THREE.Box3().setFromObject(obj.entity.object3D);
+      if (box.intersectsBox(depositZone)) {
+        obj.entity.parentNode.removeChild(obj.entity);
+        return false;
+      }
+      return true;
+      });
     }
 
     if (entity) {
