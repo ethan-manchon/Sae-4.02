@@ -5,9 +5,9 @@ Développement d'un jeu éducatif en VR et navigateur web en une semaine pour ai
 🚀 Installation
 
 Cloner le dépôt :
-
-git clone https://github.com/ethan-manchon/Sae-4.02.git
-
+```sh
+  git clone https://github.com/ethan-manchon/Sae-4.02.git
+```
 🎮 Objectif du Jeu
 
 Le jeu permet aux joueurs d'apprendre l'anglais de manière interactive en manipulant des objets et en découvrant leur traduction.
