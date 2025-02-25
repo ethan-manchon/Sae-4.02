@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Conveyor the game</title>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@master/dist/aframe-physics-system.min.js"></script>
+   
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@master/dist/aframe-extras.min.js"></script>
+   
+  <script src="https://unpkg.com/aframe-text-geometry-component@latest/dist/aframe-text-geometry-component.min.js"></script>
+  
+  <!-- Particules -->
+  <script src="https://cdn.jsdelivr.net/gh/rdub80/aframe-particle-system-component@v1.0.0/dist/aframe-particle-system-component.min.js"></script>
+  <!-- faire les particules après -->
+</head>
+
+<body>
+
+    <!-- Chargement des scripts -->
+    <script type="module" src="./game/menu.js"></script>
+    <script type="module" src="./game/timerManager.js"></script>
+    <script type="module" src="./game/backupManager.js"></script>
+    <script type="module" src="./entities/characters.js"></script>
+    <script type="module" src="./entities/objects.js"></script>
+    <script type="module" src="./components/interaction.js"></script>
+    <script type="module" src="./game/tutorial.js"></script>
+    <script type="module" src="./game/darkMode.js"></script>   
+    <script type="module" src="./game/stopMusic.js"></script>
+
+
+  <a-scene stats id="scene" physics="gravity: -9.8; debug: true" shadow="type: pcfsoft" webxr="requiredFeatures: local-floor; optionalFeatures: hand-tracking;">
+
+    <!-- sound -->
+    <a-sound id="backgroundMusic" src="url(./assets/sounds/Background-Music.mp3)" autoplay="true" loop="true" position="0 2 0" volume="0.6" distanceModel="linear" maxDistance="1000"></a-sound>
+
+    <!-- Camera and controls -->
+    <a-entity id="cameraRig" scale="2.5 2.5 2.5" position="-0.5 0 1.4">
+
+      <a-camera look-controls="pointerLockEnabled: true" wasd-controls="enabled: false">
+        <a-cursor></a-cursor>
+      </a-camera>
+
+      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .collidable"></a-entity>
+
+      <a-entity camera look-controls wasd-controls> 
+        <a-entity id="rightController" oculus-touch-controls="hand: right" raycaster="showLine:true; objects: .collidable" cursor></a-entity>
+        <a-entity id="leftController" oculus-touch-controls="hand: left" raycaster="showLine:true; objects: .collidable" cursor></a-entity>
+      </a-entity>
+
+    </a-entity>
+
+    <!-- Ceiling Light -->
+    <a-light type="point" position="0 5 0" intensity="0.7" color="#CCC" castShadow="true" angle="120" penumbra="0.8"
+      target="#LED1"></a-light>
+
+    <!-- Ground -->
+    <a-box id="ground" rotation="-90 0 0" position="0 -0.5 0" src="./assets/models/environment/ground.jpg" material="repeat: 1 1"
+      width="25" height="25" static-body="shape:box"></a-box>
+
+    <!-- Assets -->
+    <a-assets>
+
+      <!-- Male -->
+      <a-asset-item id="person1" src="./assets/models/characters/Male1.glb"></a-asset-item>
+      <a-asset-item id="person2" src="./assets/models/characters/Male2.glb"></a-asset-item>
+      <a-asset-item id="person3" src="./assets/models/characters/Male3.glb"></a-asset-item>
+      <!-- Female -->
+      <a-asset-item id="person4" src="./assets/models/characters/Female1.glb"></a-asset-item>
+      <a-asset-item id="person5" src="./assets/models/characters/Female2.glb"></a-asset-item>
+      <a-asset-item id="person6" src="./assets/models/characters/Female3.glb"></a-asset-item>
+      <!-- Fire -->
+      <a-asset-item id="Fire" src="./assets/models/environment/Fire.glb"></a-asset-item>
+      <a-asset-item id="Shelves" src="./assets/models/environment/Shelves.glb"></a-asset-item>
+      <a-asset-item id="Conveyor" src="./assets/models/environment/Conveyor.glb"></a-asset-item>
+      <a-asset-item id="LED" src="./assets/models/environment/LED.glb"></a-asset-item>
+      <a-asset-item id="Extractor" src="./assets/models/environment/Extractorhood.glb"></a-asset-item>
+      <a-asset-item id="Door" src="./assets/models/environment/Doorway.glb"></a-asset-item>
+      <a-asset-item id="Table" src="./assets/models/environment/Table.glb"></a-asset-item>
+    </a-assets>
+
+    <!-- Shelves -->
+    <a-entity id="shelves_1" gltf-model="#Shelves" position="-5 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_2" gltf-model="#Shelves" position="5 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_3" gltf-model="#Shelves" position="-5 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_4" gltf-model="#Shelves" position="5 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_5" gltf-model="#Shelves" position="-5 0 -9.4" scale="2 2 2"
+      static-body="shape:box"></a-entity>
+    <a-entity id="shelves_6" gltf-model="#Shelves" position="5 0 -9.4" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_7" gltf-model="#Shelves" position="-5 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_8" gltf-model="#Shelves" position="5 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_9" gltf-model="#Shelves" position="-9 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_10" gltf-model="#Shelves" position="-9 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_11" gltf-model="#Shelves" position="9 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_12" gltf-model="#Shelves" position="9 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_13" gltf-model="#Shelves" position="-9 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_14" gltf-model="#Shelves" position="-9 0 -9.4" scale="2 2 2"
+    static-body="shape:box"></a-entity>
+    <a-entity id="shelves_15" gltf-model="#Shelves" position="9 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
+    <a-entity id="shelves_16" gltf-model="#Shelves" position="9 0 -9.4" scale="2 2 2"
+    static-body="shape:box"></a-entity>
+
+    <!-- Conveyor and Fire -->
+    <a-entity>
+      <a-entity id="conveyor" gltf-model="#Conveyor" position="3 1 0" scale="10 10 10"
+        static-body="shape: box"></a-entity>
+      <a-entity id="Fire" gltf-model="#Fire" position="-9.5 1.7 -1.2" scale="0.03 0.03 0.03">
+        <a-sound id="FireSound" src="url(./assets/sounds/fire.mp3)" autoplay="true" loop="true" position="0 2 0" volume="0.8" distanceModel="linear" maxDistance="1000"></a-sound>
+        <!-- Fire Light (Oscillating) -->
+        <a-light id="FireLight" type="point" intensity="0.8" position="-9 4.33326 -1.14685" color="#ff9300" 
+          animation="dir: alternate; dur: 500; easing: easeInOutSine; from: #ff9300; loop: true; property: light.color; to: #ffaa00" 
+          light="color: rgba(255,120,0,1)">
+        </a-light>
+      </a-entity>
+
+      <a-entity id="DepositZone" gltf-model="#Table" position="-2.5 0.1 3" rotation="0 90 0" scale="2 5 2"
+        static-body="shape:box">
+        <a-entity position="0 0.440 0" rotation="270 0 0" scale="3 3 3"
+          text="value: Deposit Zone Here !; color: brown; align: center; side: double; backgroundColor: white"
+          look-at="#cameraRig"></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <!-- Score Board -->
+    <a-text value="Score : " position="3.63935 4.52739 2.06748" rotation="0 -90 0" color="yellow" align="center" width="6" side="double" font="kelsonsans" shader="msdf" negate="false" anchor="center" baseline="center" wrap-count="20" text="value: Score :">
+      <a-text id="ScoreBoard" value="0" position="1.7 0 0" color="yellow" align="center" width="6" side="double" font="kelsonsans" shader="msdf" negate="false" anchor="center" baseline="center" wrap-count="20"></a-text>
+    </a-text>
+
+    <!-- Time -->
+    <a-text value="Timer : " position="3.63935 3.52739 2.06748" rotation="0 -90 0" color="yellow" align="center" width="6" side="double" font="kelsonsans" shader="msdf" negate="false" anchor="center" baseline="center" wrap-count="20" text="value: Timer :">
+      <a-text id="timer" value="0" position="1.7 0 0" color="yellow" align="center" width="6" side="double" font="kelsonsans" shader="msdf" negate="false" anchor="center" baseline="center" wrap-count="20"></a-text>
+    </a-text>
+
+    <!-- wall -->
+    <a-box id="FrontWall" position="0 3 -12.5" src="./assets/models/environment/brick-wall.jpg" width="25" height="10"
+      static-body="shape:box" class="collidable"></a-box>
+    <a-box id="BackWall" position="0 3 12.5" rotation="0 180 0" src="./assets/models/environment/brick-wall.jpg" width="25" height="10"
+      static-body="shape:box" class="collidable">
+      <a-entity id="Door" gltf-model="#Door" position="-1.5 -3 1" scale="6 6 6" rotation="0 180 0"
+        static-body="shape:box"></a-entity>
+    </a-box>
+    <a-box id="LeftWall" position="-12.5 3 0" rotation="0 90 0" src="./assets/models/environment/brick-wall.jpg" width="25" height="10"
+      static-body="shape:box" class="collidable"></a-box>
+    <a-box id="RightWall" position="12.5 3 0" rotation="0 -90 0" src="./assets/models/environment/brick-wall.jpg" width="25" height="10"
+      static-body="shape:box" class="collidable"></a-box>
+
+    <!-- ceiling -->
+    <a-plane id="Ceiling" position="0 8 0" rotation="90 0 0" src="./assets/models/environment/ceiling.jpg" width="25" height="25"
+      roughness="0.5" static-body="shape:box">
+      <a-entity id="LED1" gltf-model="#LED" rotation="270 0 0" scale="1.5 1.5 1.5"
+        material="metalness: 1; roughness: 0; reflectivity: 1"></a-entity>
+    </a-plane>
+    <a-entity id="hood" gltf-model="#Extractor" position="6 3.5 -2" rotation="0 0 0" scale="1.2 1.2 1.2"
+      material="metalness: 1; roughness: 0; reflectivity: 1"></a-entity>
+
+    <!-- Menu -->
+    <a-entity id="StartMenu">
+      <a-text id="title" value="Conveyor the game" font="kelsonsans" color="white" align="center" position="-0.5 5.5 -2" rotation="45 0 0" scale="2 2 2" text=""></a-text>
+
+      <!-- rules -->
+      <a-text id="rules" font="kelsonsans" value="Welcome to Conveyor the game ! your goal here is simple : people will come here to ask you to give them objects with specific attributes, like color or shape, you will need to take the object from the conveyor and deposit them in the deposit box to your left, once you give them what they wanted they will leave and a new person will come and your score will go up. got it ? then let's play !" color="white" position="-0.5 4.37778 -2" rotation="10 0 0" text="align: center; width: 3"></a-text>
+
+      <!-- Start button -->
+      <a-box id="startButton" color="black" opacity="0.5" position="-0.5 3 -2" scale="1 0.5 0.5" class="collidable" geometry="primitive: box; depth: 0.3; height: 0.92; width: 1" rotation="-30 0 0" event-listener>
+        <a-text font="kelsonsans" value="Start" color="yellow" align="center" position="0 0 0.3" text="width: 7; antialias: true"></a-text>
+      </a-box>
+
+      <!-- button load -->
+      <a-box id="loadBackup" color="black" opacity="0.5" position="-3 3 -2" scale="1 0.5 0.5" class="collidable" material=""
+        geometry="depth: 0.3; height: 0.92; width: 1.5" rotation="-30 0 0" event-listener>
+        <a-text font="kelsonsans" value="Backup" color="white" align="center" position="0 0 0.3" text="width: 7"></a-text>
+      </a-box>
+
+      <!-- Timer  -->
+      <a-entity position="3 4 -3" rotation="0 -40 0">
+        <a-text id="timer" font="kelsonsans" value="Timer" color="white" align="center" position="0 0.75 0" text="width: 7"></a-text>
+        <a-box id="increaseTimer" color="green" scale="1 0.5 0.5" class="collidable" geometry="depth: 0.3; height: 0.92">
+          <a-text value="+" color="white" align="center" position="0 0 0.3" text="width: 7"></a-text>
+        </a-box>
+        <a-text id="gameTimer" font="kelsonsans" value="120" color="white" align="center" position="0 -0.5 0" text="width: 7"></a-text>
+        <a-box id="reduceTimer" color="red" position="0 -1 0" scale="1 0.5 0.5" class="collidable"
+          geometry="depth: 0.3; height: 0.92">
+          <a-text value="-" color="white" align="center" position="0 0 0.3" text="width: 7"></a-text>
+        </a-box>
+      </a-entity>
+
+      <!-- Music -->
+      <a-box id="MusicButton" class="collidable" scale="" position="1.21162 2.97313 -2" color="green" opacity="0.5" music-checkbox geometry="depth: 0.1; height: 0.5" rotation="-30 0 0">
+        <a-text id="MusicButtonText" font="kelsonsans" value="Music" color="white" align="center" position="0 0 0.05" text="width: 6"></a-text>
+      </a-box>
+
+      <!-- dark mode -->
+      <a-box id="darkModeButton" class="collidable" color="black" opacity="0.5" geometry="depth: 0.2; height: 0.53; width: 1.2" position="-3 4.48507 -2.20818" rotation="0 0 0" darkmode-checkbox>
+        <a-text font="kelsonsans" value="Dark Mode" color="red" position="-0.55 0.01 0.1"></a-text>
+      </a-box>
+
+      <!-- tutorial -->
+      <a-box id="startTutorial" class="collidable" color="black" opacity="0.5" geometry="depth: 0.2; height: 0.53; width: 1.2" position="-3 3.75183 -2.2" rotation="">
+        <a-text font="kelsonsans" value="Tutorial" color="white" position="0 0 0.1" text="align: center"></a-text>
+      </a-box>
+
+    </a-entity>
+
+  </a-scene>
+</body>
+
+</html>
