@@ -56,3 +56,5 @@ function darkModeOff() {
   const headlamp = document.querySelector("#FrontLight");
   if (headlamp) headlamp.remove();
 }
+
+export { darkModeButton, darkModeOn, darkModeOff };

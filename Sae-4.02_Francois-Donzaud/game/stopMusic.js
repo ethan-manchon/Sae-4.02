@@ -5,7 +5,8 @@ AFRAME.registerComponent("music-checkbox", {
   },
 
   init: function () {
-    this.el.addEventListener("click", () => {
+    this.el.addEventListener("click", (event) => {
+      console.log("Clicked element ID:", this.el.id);
       // Vérifiez si l'élément cliqué est la boîte avec l'ID 'MusicButton'
       if (this.el.id === "MusicButton") {
         const checked = !this.data.checked;
@@ -24,6 +25,7 @@ AFRAME.registerComponent("music-checkbox", {
           this.el.setAttribute("color", "green");
         }
       }
+      event.stopPropagation(); // Empêche la propagation de l'événement
     });
   },
 });

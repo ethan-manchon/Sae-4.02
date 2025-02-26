@@ -18,7 +18,7 @@ function StopMenu() {
     const endMenu = document.createElement("a-entity");
     endMenu.setAttribute("id", "EndMenu");
     endMenu.setAttribute("position", "0 3.667 -2.3");
-    endMenu.setAttribute("rotation", "29.999999999999996 0 0");
+    endMenu.setAttribute("rotation", "30 0 0");
     endMenu.setAttribute("scale", "2 2 2");
 
     // Bouton "Replay" qui recharge la page

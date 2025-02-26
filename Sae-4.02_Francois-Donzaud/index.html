@@ -30,6 +30,9 @@
     <script type="module" src="./game/darkMode.js"></script>   
     <script type="module" src="./game/stopMusic.js"></script>
 
+  <div id="loading-screen">
+    <div class="spinner"></div>
+  </div>
 
   <a-scene stats id="scene" physics="gravity: -9.8; debug: true" shadow="type: pcfsoft" webxr="requiredFeatures: local-floor; optionalFeatures: hand-tracking;">
 
@@ -40,7 +43,7 @@
     <a-entity id="cameraRig" scale="2.5 2.5 2.5" position="-0.5 0 1.4">
 
       <a-camera look-controls="pointerLockEnabled: true" wasd-controls="enabled: false">
-        <a-cursor></a-cursor>
+        <a-cursor geometry="primitive: sphere; radius: 0.003" material="color: black" position="0 0 -0.3"></a-cursor>
       </a-camera>
 
       <a-entity cursor="rayOrigin: mouse" raycaster="objects: .collidable"></a-entity>
@@ -174,16 +177,19 @@
       </a-box>
 
       <!-- Timer  -->
-      <a-entity position="3 4 -3" rotation="0 -40 0">
+      <a-entity position="3 4 -2" rotation="0 -40 0" id="TimerMenu">
         <a-text id="timer" font="kelsonsans" value="Timer" color="white" align="center" position="0 0.75 0" text="width: 7"></a-text>
+
         <a-box id="increaseTimer" color="green" scale="1 0.5 0.5" class="collidable" geometry="depth: 0.3; height: 0.92">
           <a-text value="+" color="white" align="center" position="0 0 0.3" text="width: 7"></a-text>
         </a-box>
+
         <a-text id="gameTimer" font="kelsonsans" value="120" color="white" align="center" position="0 -0.5 0" text="width: 7"></a-text>
-        <a-box id="reduceTimer" color="red" position="0 -1 0" scale="1 0.5 0.5" class="collidable"
-          geometry="depth: 0.3; height: 0.92">
+
+        <a-box id="reduceTimer" color="red" position="0 -1 0" scale="1 0.5 0.5" class="collidable" geometry="depth: 0.3; height: 0.92">
           <a-text value="-" color="white" align="center" position="0 0 0.3" text="width: 7"></a-text>
         </a-box>
+        
       </a-entity>
 
       <!-- Music -->
@@ -204,6 +210,7 @@
     </a-entity>
 
   </a-scene>
+
 </body>
 
 </html>

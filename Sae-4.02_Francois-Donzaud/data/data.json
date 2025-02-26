@@ -533,7 +533,7 @@
     {
         "id": 2,
         "name": "Task_2",
-        "text": "Can you help me gather a brown item?",
+        "text": "Can you help me gather a brown item ?",
         "points": 300,
         "needed": {
             "brown": 1

@@ -75,7 +75,7 @@ function MoveTheObjects() {
     const box = new THREE.Box3().setFromObject(obj.entity.object3D);
     if (!box.intersectsBox(conveyorBox)) return;
     const position = obj.entity.object3D.position;
-    position.x -= 0.01;
+    position.x -= 0.008;
     obj.entity.object3D.position.copy(position);
     obj.entity.components["dynamic-body"].body.position.copy(position);
 
@@ -195,4 +195,4 @@ function timeToDie() {
 
 setInterval(timeToDie, 1000); // Check every second
 
-export { depositedItems, filterObjects, clearDepositedItems, MultipleObject, MoveTheObjects, RemoveObjects, timeToDie, updateDepositedItems, createObject, RandomObject, objectsArray };
+export { depositedItems, filterObjects, clearDepositedItems, MultipleObject, MoveTheObjects, RemoveObjects, timeToDie, updateDepositedItems, createObject, RandomObject, objectsArray, data};

@@ -8,18 +8,20 @@ function setTimer() {
     const dlt = document.getElementById("reduceTimer");
     const timer = document.getElementById("gameTimer");
 
-    add.addEventListener("click", () => {
+    add.addEventListener("click", (event) => {
         if (time >= 300) return;
         time += 10;
         console.log("Time increased:", time);
         timer.setAttribute("value", time);
+        event.stopPropagation(); // Empêche la propagation de l'événement
     });
 
-    dlt.addEventListener("click", () => {
+    dlt.addEventListener("click", (event) => {
         if (time <= 30) return;
         time -= 10;
         console.log("Time decreased:", time);
         timer.setAttribute("value", time);
+        event.stopPropagation(); // Empêche la propagation de l'événement
     });
 }
 
