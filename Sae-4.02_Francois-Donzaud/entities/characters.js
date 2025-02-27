@@ -95,10 +95,10 @@ function PersonArrival() {
   entity.setAttribute("play-sound-on-animation-complete", ""); // Attachez le composant ici
   scene.appendChild(entity);
 
-  entity.setAttribute(
+entity.setAttribute(
     "animation-mixer",
-    "clip: Armature|Walk; loop: repeat; timeScale: 1"
-  );
+    "clip: Armature|Walk; loop: repeat; timeScale: 1; dur: 3000"
+);
 
   // Définir l'animation de marche avec un nom spécifique
   entity.setAttribute(
