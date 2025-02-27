@@ -3,25 +3,25 @@ import { RemoveCharacters } from "../entities/characters.js";
 import { clearBackup } from "./backupManager.js";
 
 let Game_end = new Audio('./assets/sounds/Game_end.mp3');
-Game_end.volume = 0.3; // Volume de fin de jeu
+Game_end.volume = 0.3; // Volume of the sound
 
 function StopMenu() {
     const scene = document.querySelector("a-scene");
 
-    // Nettoyage de l'environnement
+    // Clean the environement 
     clearBackup();
     RemoveObjects();
     RemoveCharacters();
     Game_end.play();
 
-    // Création du menu de fin
+    // Creation of the End Menu
     const endMenu = document.createElement("a-entity");
     endMenu.setAttribute("id", "EndMenu");
     endMenu.setAttribute("position", "0 3.667 -2.3");
     endMenu.setAttribute("rotation", "30 0 0");
     endMenu.setAttribute("scale", "2 2 2");
 
-    // Bouton "Replay" qui recharge la page
+    // Replay Button
     const restartButton = document.createElement("a-box");
     restartButton.setAttribute("id", "restartButton");
     restartButton.setAttribute("class", "collidable");
@@ -41,10 +41,10 @@ function StopMenu() {
 
     restartButton.appendChild(restartText);
     restartButton.addEventListener("click", () => {
-        window.location.reload(); // Recharge complètement la page
+        window.location.reload(); // Complete reload of the page
     });
 
-    // Texte de fin de jeu
+    // Text Game Over
     const gameOverText = document.createElement("a-text");
     gameOverText.setAttribute("value", "Time's Up ! Your Score :");
     gameOverText.setAttribute("align", "center");
@@ -52,7 +52,7 @@ function StopMenu() {
     gameOverText.setAttribute("text", "color: yellow; font: kelsonsans; side: double; width: 1; wrapCount: 12");
     gameOverText.setAttribute("position", "0 0.83546 -0.48235");
 
-    // Score actuel
+    // Score
     const gameOverScore = document.createElement("a-text");
     let score = document.getElementById("ScoreBoard").getAttribute("value");
     gameOverScore.setAttribute("value", score);
@@ -63,7 +63,7 @@ function StopMenu() {
     gameOverScore.setAttribute("position", "0 -0.35 -0.0053");
     gameOverText.appendChild(gameOverScore);
 
-    // Meilleur score
+    // Best score
     const highScoreText = document.createElement("a-text");
     highScoreText.setAttribute("value", "High score :");
     highScoreText.setAttribute("align", "center");

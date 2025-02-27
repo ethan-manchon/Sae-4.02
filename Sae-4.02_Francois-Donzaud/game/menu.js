@@ -3,7 +3,7 @@ import { PersonArrival, InitTask, RemoveCharacters, PersonDeparture, setQuestion
 import { Timer, setTimer } from "./timerManager.js";
 import { clearBackup } from "./backupManager.js";
 
-// Configuration par défaut du jeu
+// Config of the game
 let gameConfig = {
     score: 0,
     timer: 0,
@@ -29,7 +29,7 @@ window.addEventListener('load', function() {
     checkIfLoaded();
 });
 
-// Fonction pour démarrer le jeu (par défaut ou depuis un backup)
+// Launch the game with the config
 function startGame(config = gameConfig, isBackup = false) {
 
     const startMenu = document.querySelector("#StartMenu");
@@ -41,7 +41,7 @@ function startGame(config = gameConfig, isBackup = false) {
         tutorialMenu.remove();
     }
 
-    // Appliquer les valeurs de config
+    // Apply the config to the game
     const scoreBoard = document.querySelector("#ScoreBoard");
     scoreBoard.setAttribute("value", config.score);
 
@@ -50,7 +50,7 @@ function startGame(config = gameConfig, isBackup = false) {
 
     RemoveObjects();
     RemoveCharacters();
-    // Met à jour directement `randomNumberQuestion` dans characters.js
+    // Update the question and character number
     const NbrPerson = data.Characteres.length;
     const NbrQuestion = data.Tasks.length;
     setQuestionNumber(config.nextQuestion || Math.floor(Math.random() * NbrQuestion) + 1);
@@ -72,12 +72,12 @@ function startGame(config = gameConfig, isBackup = false) {
     console.log("Game started with config:", config, "isBackup:", isBackup);
 }
 
-// Fonction pour détecter le clic sur le bouton Start
+// Detect the click on the start button
 function handleStartButtonClick() {
     startGame();
 }
 
-// Ajouter un écouteur de clic sur le bouton Start après chargement du DOM
+// Add the event listener on the start button
 document.addEventListener("DOMContentLoaded", () => {
     const startButtons = document.querySelectorAll("#startButton, #tutoMenu #startButton");
     if (startButtons.length > 0) {

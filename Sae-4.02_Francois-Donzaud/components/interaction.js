@@ -1,5 +1,5 @@
 let grabSound = new Audio("./assets/sounds/Pick_item.mp3");
-grabSound.volume = 1; // volume du son de l'objet ramassé
+grabSound.volume = 1; // Sound of the object being picked up
 
 AFRAME.registerComponent("oculus-grab", {
   init: function () {
@@ -11,7 +11,7 @@ AFRAME.registerComponent("oculus-grab", {
       let raycaster = evt.target.components.raycaster;
       if (!raycaster) return;
       let intersectedEls = raycaster.intersectedEls;
-      if (intersectedEls.length === 0 || intersectedEls[0] !== el) return; // Ne saisir que l'objet le plus proche
+      if (intersectedEls.length === 0 || intersectedEls[0] !== el) return; // only take the first intersected element
 
       isGrabbed = true;
       controller = evt.target;
@@ -54,9 +54,8 @@ AFRAME.registerComponent("oculus-grab", {
   },
 });
 
-// Le code fait effet quand le jeu est en navigateur
+// Code for the browser version
 AFRAME.registerComponent("click-grab", {
-  // Version navigateur
 
   init: function () {
     let el = this.el;
@@ -72,12 +71,12 @@ AFRAME.registerComponent("click-grab", {
         camera.object3D.getWorldPosition(cameraPos);
         camera.object3D.getWorldQuaternion(cameraQuat);
 
-        // Convertit la position de la souris en coordonnées 3D
+        // Convert the mouse position to a 3D position
         let mouseX = (event.clientX / window.innerWidth) * 2 - 1;
         let mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 
-        let offset = new THREE.Vector3(mouseX * 0.5, mouseY * 0.5, -2.5); // Toujours devant
-        offset.applyQuaternion(cameraQuat); // Oriente l'objet devant la caméra
+        let offset = new THREE.Vector3(mouseX * 0.5, mouseY * 0.5, -2.5); // Always 2.5 meters in front of the camera
+        offset.applyQuaternion(cameraQuat); // Put the object in front of the camera
 
         let newPosition = cameraPos.clone().add(offset);
         el.object3D.position.copy(newPosition);
@@ -87,7 +86,7 @@ AFRAME.registerComponent("click-grab", {
     el.addEventListener("mousedown", function () {
       isGrabbed = true;
       grabSound.play();
-      el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
+      el.setAttribute("dynamic-body", "mass: 0"); // Deactivate gravity
       el.setAttribute("grab", "");
       window.addEventListener("mousemove", updatePosition);
     });
@@ -97,7 +96,7 @@ AFRAME.registerComponent("click-grab", {
         el.setAttribute(
           "dynamic-body",
           "mass: 1; restitution: 0.6; friction: 0.5"
-        ); // Réactive la gravité
+        ); // Reativating gravity
         el.removeAttribute("grab");
         isGrabbed = false;
         window.removeEventListener("mousemove", updatePosition);

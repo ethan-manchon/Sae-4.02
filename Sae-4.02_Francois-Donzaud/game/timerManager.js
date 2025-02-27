@@ -1,8 +1,8 @@
 import { StopMenu } from "./endManager.js";
 
-let time = 120; // Valeur par défaut
+let time = 120; // Default value
 
-// Fonction pour ajuster le temps avant le démarrage
+// Update the timer value
 function setTimer() {
     const add = document.querySelector("#increaseTimer");
     const dlt = document.querySelector("#reduceTimer");
@@ -13,7 +13,7 @@ function setTimer() {
         time += 10;
         console.log("Time increased:", time);
         timer.setAttribute("value", time);
-        event.stopPropagation(); // Empêche la propagation de l'événement
+        event.stopPropagation(); // Prevent propagation of the event
     });
 
     dlt.addEventListener("click", (event) => {
@@ -21,15 +21,15 @@ function setTimer() {
         time -= 10;
         console.log("Time decreased:", time);
         timer.setAttribute("value", time);
-        event.stopPropagation(); // Empêche la propagation de l'événement
+        event.stopPropagation(); // Prevent propagation of the event
     });
 }
 
-// Fonction pour démarrer le timer
+// Launch the timer
 function Timer() {
     let textTime = document.querySelector("#timer");
 
-    // Utiliser la valeur affichée dans l'élément HTML
+    // Use the default value if the value is not set
     let countdown = parseInt(textTime.getAttribute("value")) || time;
 
     let timer = setInterval(function () {

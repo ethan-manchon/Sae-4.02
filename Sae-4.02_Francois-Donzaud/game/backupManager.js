@@ -1,7 +1,7 @@
 import { startGame } from "./menu.js";
 import { Timer } from "./timerManager.js";
 
-// Vérifie si une sauvegarde existe et active le bouton backup
+// Check if a backup is available and update the button accordingly
 function checkBackup() {
     const backup = localStorage.getItem("gameBackup");
     const backupButton = document.querySelector("#loadBackup");
@@ -15,7 +15,7 @@ function checkBackup() {
     }
 }
 
-// Sauvegarde l'état du jeu après chaque question
+// Save the game state
 function saveGame(score, timer, nextQuestion, nextCharacter) {
     const gameData = {
         score: score,
@@ -27,7 +27,7 @@ function saveGame(score, timer, nextQuestion, nextCharacter) {
     localStorage.setItem("gameBackup", JSON.stringify(gameData));
 }
 
-// Restauration de la sauvegarde
+// Load the game state
 function restoreBackup() {
     const backupData = JSON.parse(localStorage.getItem("gameBackup"));
 
@@ -35,7 +35,7 @@ function restoreBackup() {
 
     console.log("Restoring backup...", backupData);
 
-    // Met à jour la configuration du jeu
+    // Save the backup data in a new object
     const restoredConfig = {
         score: backupData.score,
         timer: backupData.timer,
@@ -43,10 +43,10 @@ function restoreBackup() {
         nextCharacter: backupData.nextCharacter
     };
 
-    // Lancer la partie avec les valeurs restaurées (isBackup = true)
+    // Launch the game with the restored data
     startGame(restoredConfig, true);
 
-    // Attendre un peu et relancer le timer avec la bonne valeur
+    // Wait for the game to start before restoring
     setTimeout(() => {
         Timer();
     }, 100);
@@ -54,7 +54,7 @@ function restoreBackup() {
     localStorage.removeItem("gameBackup");
 }
 
-// Supprime la sauvegarde à la fin du jeu
+// Delete the backup
 function clearBackup() {
     localStorage.removeItem("gameBackup");
 }

@@ -54,8 +54,7 @@ function AskQuestion() {
   let person = document.querySelector(`.person${randomNumberPerson}`);
 
   AskSound = new Audio(question.sound);
-  AskSound.volume = 0.30; // volume de la question
-
+  AskSound.volume = 0.30; // Volume of the question sound
   AskSound.play();
 
   if (person) {
@@ -67,8 +66,6 @@ function AskQuestion() {
     text.setAttribute("rotation", "0 -30 0");
     text.setAttribute("text", "width: 2; wrapCount: 25");
     person.appendChild(text);
-  } else {
-    // console.error(`Person entity with class person${randomNumberPerson} not found.`);
   }
 
   PersonDeparture();
@@ -92,7 +89,7 @@ function PersonArrival() {
   entity.setAttribute("position", "0 0 10");
   entity.setAttribute("rotation", "0 180 0");
   entity.setAttribute("scale", "1.5 1.7 1.5");
-  entity.setAttribute("play-sound-on-animation-complete", ""); // Attachez le composant ici
+  entity.setAttribute("play-sound-on-animation-complete", "");
   scene.appendChild(entity);
 
 entity.setAttribute(
@@ -100,15 +97,13 @@ entity.setAttribute(
     "clip: Armature|Walk; loop: repeat; timeScale: 1; dur: 3000"
 );
 
-  // Définir l'animation de marche avec un nom spécifique
+  // Define the walk animation for the person entity
   entity.setAttribute(
     "animation__walk",
     "property: position; to: 0 0 5; dur: 3000; easing: linear"
   );
 
-  // Écouter l'événement animationcomplete pour l'animation spécifique
   entity.addEventListener("animationcomplete", function (event) {
-    // Vérifiez si l'animation terminée est 'animation__walk'
     if (event.detail.name === "animation__walk") {
       let entity = document.querySelector(`.person${randomNumberPerson}`);
       if (entity) {
@@ -119,7 +114,7 @@ entity.setAttribute(
 
         AskQuestion();
 
-        // Sauvegarde immédiate après l'apparition du personnage et la nouvelle question
+        // Save the game state after the person arrives
         let currentScore = document
           .getElementById("ScoreBoard")
           .getAttribute("value");
@@ -130,15 +125,14 @@ entity.setAttribute(
         saveGame(
           parseInt(currentScore),
           parseInt(currentTimer),
-          randomNumberQuestion, // Sauvegarde la question qui vient d'apparaître
-          randomNumberPerson // Sauvegarde le personnage actuel
+          randomNumberQuestion, // Save the current question number
+          randomNumberPerson // Save the current person number
         );
       }
     }
   });
 }
 
-// Enregistrement du composant en dehors de la fonction
 AFRAME.registerComponent("play-sound-on-animation-complete", {
   init: function () {
     this.el.addEventListener("animationcomplete", (event) => {
@@ -160,9 +154,6 @@ let soundPlayed = false;
 
 function depositedItemsChanged() {
     // Logic to check if deposited items have changed
-    // This function should return true if items have changed, otherwise false
-    // Implement the logic based on your application's requirements
-    // For example, you can compare the current deposited items with the previous state
     let previousItems = JSON.parse(localStorage.getItem('previousDepositedItems')) || [];
     let currentItems = depositedItems;
 
@@ -246,7 +237,7 @@ function PersonDeparture() {
     ScoreBoard.setAttribute("value", currentScore + Score);
     console.log("ScoreBoard :", ScoreBoard.getAttribute("value"));
 
-    // Supprime les objets qui sont en contact avec la table (DepositZone)
+    // Delete the person entity if it exists
     const depositZoneEntity = document.querySelector("#DepositZone");
     if (depositZoneEntity) {
       const depositZone = new THREE.Box3().setFromObject(
@@ -285,11 +276,6 @@ function PersonDeparture() {
       });
     }
   } else {
-    // Play a sound when the wrong item is deposited
-    // let NoMusic = new Audio('./assets/sounds/Wrong_Item.mp3');
-    // NoMusic.volume = 0.3;
-    // NoMusic.play();
-
     setTimeout(() => {
       PersonDeparture();
     }, 1500);

@@ -158,7 +158,7 @@ function filterObjects(depositZone) {
       const box = new THREE.Box3().setFromObject(obj.entity.object3D);
       if (box.intersectsBox(depositZone)) {
           obj.entity.parentNode.removeChild(obj.entity);
-          objectsArray.splice(i, 1); // Supprime l'objet directement du tableau
+          objectsArray.splice(i, 1); // Delete the object from the array
       }
   }
 }

@@ -1,5 +1,4 @@
 // Register a new AFRAME component for the checkbox functionality
-// Vérifiez si l'élément avec l'ID darkModeButton existe
 const darkModeButton = document.querySelector("#darkModeButton");
 
 AFRAME.registerComponent('darkmode-checkbox', {
@@ -9,7 +8,7 @@ AFRAME.registerComponent('darkmode-checkbox', {
 
   init: function () {
       this.el.addEventListener('click', () => {
-          // Vérifiez si l'élément cliqué est la boîte avec l'ID 'darkModeButton'
+          // Check if the clicked element is the box with the ID 'darkModeButton' or one of its children
           if (this.el.id === 'darkModeButton') {
               const checked = !this.data.checked;
               this.el.setAttribute('darkmode-checkbox', 'checked', checked);
