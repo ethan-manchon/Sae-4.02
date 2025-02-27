@@ -144,7 +144,7 @@ function MultipleObject() {
     } else {
       clearInterval(randomObjectInterval);
     }
-  }, 1500);
+  }, 2000);
 
   objectsArray = [];
 }

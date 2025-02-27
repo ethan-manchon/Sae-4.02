@@ -182,3 +182,4 @@ function createTuto() {
 }
 
 buttonStartTuto.addEventListener("click", createTuto);
+buttonStartTuto.addEventListener("click", darkModeOff);

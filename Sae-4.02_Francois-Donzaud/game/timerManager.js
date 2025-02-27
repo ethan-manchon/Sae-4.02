@@ -4,9 +4,9 @@ let time = 120; // Valeur par défaut
 
 // Fonction pour ajuster le temps avant le démarrage
 function setTimer() {
-    const add = document.getElementById("increaseTimer");
-    const dlt = document.getElementById("reduceTimer");
-    const timer = document.getElementById("gameTimer");
+    const add = document.querySelector("#increaseTimer");
+    const dlt = document.querySelector("#reduceTimer");
+    const timer = document.querySelector("#gameTimer");
 
     add.addEventListener("click", (event) => {
         if (time >= 300) return;

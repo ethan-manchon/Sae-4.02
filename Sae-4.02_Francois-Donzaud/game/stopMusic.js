@@ -7,8 +7,8 @@ AFRAME.registerComponent("music-checkbox", {
   init: function () {
     this.el.addEventListener("click", (event) => {
       console.log("Clicked element ID:", this.el.id);
-      // Vérifiez si l'élément cliqué est la boîte avec l'ID 'MusicButton'
-      if (this.el.id === "MusicButton") {
+      // Vérifiez si l'élément cliqué est la boîte avec l'ID 'MusicButton' ou un de ses enfants
+      if (this.el.closest("#MusicButton")) {
         const checked = !this.data.checked;
         this.el.setAttribute("music-checkbox", "checked", checked);
 

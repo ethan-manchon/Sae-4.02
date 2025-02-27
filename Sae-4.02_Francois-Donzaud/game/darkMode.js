@@ -4,7 +4,7 @@ const darkModeButton = document.querySelector("#darkModeButton");
 
 AFRAME.registerComponent('darkmode-checkbox', {
   schema: {
-      checked: { type: 'boolean', default: false }
+      checked: { type: 'boolean', default: false, active: false }
   },
 
   init: function () {
