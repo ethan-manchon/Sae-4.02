@@ -29,6 +29,7 @@
     <script type="module" src="./game/tutorial.js"></script>
     <script type="module" src="./game/darkMode.js"></script>   
     <script type="module" src="./game/stopMusic.js"></script>
+    <script type="module" src="./game/HideCursor.js"></script>
 
   <div id="loading-screen">
     <div class="spinner"></div>
@@ -43,7 +44,7 @@
     <a-entity id="cameraRig" scale="2.5 2.5 2.5" position="-0.5 0 1.4">
 
       <a-camera look-controls="pointerLockEnabled: true" wasd-controls="enabled: false">
-        <a-cursor geometry="primitive: sphere; radius: 0.003" material="color: black" position="0 0 -0.3"></a-cursor>
+        <a-cursor hide-in-vr geometry="primitive: sphere; radius: 0.003" material="color: black" position="0 0 -0.3"></a-cursor>
       </a-camera>
 
       <a-entity cursor="rayOrigin: mouse" raycaster="objects: .collidable"></a-entity>
