@@ -501,6 +501,86 @@
             "material": "cloth",
             "use": "storage"
         }
+    },
+    {
+        "id": 30,
+        "name": "GameBoy",
+        "modelPath": "./assets/models/item/GameBoy.glb",
+        "scale" : {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+        },
+        "attributes": {
+            "color": "gray",
+            "shape": "square",
+            "material": "plastic",
+            "use": "divertissement"
+        }
+    },
+    {
+        "id": 31,
+        "name": "Fan",
+        "modelPath": "./assets/models/item/Fan.glb",
+        "scale" : {
+            "x": 0.5,
+            "y": 0.5,
+            "z": 0.5
+        },
+        "attributes": {
+            "color": "black",
+            "shape": "round",
+            "material": "metal",
+            "use": "electricity"
+        }
+    },
+    {
+        "id": 32,
+        "name": "Hamburger",
+        "modelPath": "./assets/models/item/Hamburger.glb",
+        "scale" : {
+            "x": 0.05,
+            "y": 0.05,
+            "z": 0.05
+        },
+        "attributes": {
+            "color": "brown",
+            "shape": "round",
+            "material": "organic",
+            "use": "food"
+        }
+    },
+    {
+        "id": 33,
+        "name": "Wrench",
+        "modelPath": "./assets/models/item/Wrench.glb",
+        "scale" : {
+            "x": 3.5,
+            "y": 3.5,
+            "z": 3.5
+        },
+        "attributes": {
+            "color": "gray",
+            "shape": "square",
+            "material": "metal",
+            "use": "tools"
+        }
+    },
+    {
+        "id": 34,
+        "name": "Screwdriver",
+        "modelPath": "./assets/models/item/Screwdriver.glb",
+        "scale" : {
+            "x": 0.25,
+            "y": 0.25,
+            "z": 0.25
+        },
+        "attributes": {
+            "color": "red",
+            "shape": "round",
+            "material": "metal",
+            "use": "tools"
+        }
     }
 ],
     "Tasks": [

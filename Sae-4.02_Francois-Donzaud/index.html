@@ -56,8 +56,7 @@
     </a-entity>
 
     <!-- Ceiling Light -->
-    <a-light type="point" position="0 5 0" intensity="0.7" color="#CCC" castShadow="true" angle="120" penumbra="0.8"
-      target="#LED1"></a-light>
+    <a-light type="point" position="0 6.5 0" rotation="0 -90 0" intensity="0.8" color="#fff9db" castShadows="true" angle="120" penumbra="0.8" target="#LED1" distance="20"></a-light>
 
     <!-- Ground -->
     <a-box id="ground" rotation="-90 0 0" position="0 -0.5 0" src="./assets/models/environment/ground.jpg" material="repeat: 1 1"
@@ -74,7 +73,7 @@
       <a-asset-item id="person4" src="./assets/models/characters/Female1.glb"></a-asset-item>
       <a-asset-item id="person5" src="./assets/models/characters/Female2.glb"></a-asset-item>
       <a-asset-item id="person6" src="./assets/models/characters/Female3.glb"></a-asset-item>
-      <!-- Fire -->
+
       <a-asset-item id="Fire" src="./assets/models/environment/Fire.glb"></a-asset-item>
       <a-asset-item id="Shelves" src="./assets/models/environment/Shelves.glb"></a-asset-item>
       <a-asset-item id="Conveyor" src="./assets/models/environment/Conveyor.glb"></a-asset-item>
@@ -82,28 +81,58 @@
       <a-asset-item id="Extractor" src="./assets/models/environment/Extractorhood.glb"></a-asset-item>
       <a-asset-item id="Door" src="./assets/models/environment/Doorway.glb"></a-asset-item>
       <a-asset-item id="Table" src="./assets/models/environment/Table.glb"></a-asset-item>
+      <a-asset-item id="Boxes" src="./assets/models/environment/Boxes.glb"></a-asset-item>
+      <a-asset-item id="Printer" src="./assets/models/environment/Printer.glb"></a-asset-item>
+      <a-asset-item id="Pallet_Truck" src="./assets/models/environment/Pallet_Truck.glb"></a-asset-item>
+      <a-asset-item id="Corkboard" src="./assets/models/environment/Wall_Corkboard.glb"></a-asset-item>
+      <a-asset-item id="Celling_Fan" src="./assets/models/environment/Celling_Fan.glb"></a-asset-item>
+      <a-asset-item id="Clock" src="./assets/models/environment/Clock.glb"></a-asset-item>
+      <a-asset-item id="Pallet" src="./assets/models/environment/Pallet.glb"></a-asset-item>
     </a-assets>
 
     <!-- Shelves -->
-    <a-entity id="shelves_1" gltf-model="#Shelves" position="-5 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_2" gltf-model="#Shelves" position="5 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_3" gltf-model="#Shelves" position="-5 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_4" gltf-model="#Shelves" position="5 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_5" gltf-model="#Shelves" position="-5 0 -9.4" scale="2 2 2"
+    <a-entity id="shelves">
+      <a-entity id="shelves_1" gltf-model="#Shelves" position="-5 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_2" gltf-model="#Shelves" position="5 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_3" gltf-model="#Shelves" position="-5 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_4" gltf-model="#Shelves" position="5 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_5" gltf-model="#Shelves" position="-5 0 -9.4" scale="2 2 2"
+        static-body="shape:box"></a-entity>
+      <a-entity id="shelves_6" gltf-model="#Shelves" position="5 0 -9.4" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_7" gltf-model="#Shelves" position="-5 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_8" gltf-model="#Shelves" position="5 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_9" gltf-model="#Shelves" position="-9 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_10" gltf-model="#Shelves" position="-9 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_11" gltf-model="#Shelves" position="9 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_12" gltf-model="#Shelves" position="9 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_13" gltf-model="#Shelves" position="-9 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_14" gltf-model="#Shelves" position="-9 0 -9.4" scale="2 2 2"
       static-body="shape:box"></a-entity>
-    <a-entity id="shelves_6" gltf-model="#Shelves" position="5 0 -9.4" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_7" gltf-model="#Shelves" position="-5 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_8" gltf-model="#Shelves" position="5 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_9" gltf-model="#Shelves" position="-9 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_10" gltf-model="#Shelves" position="-9 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_11" gltf-model="#Shelves" position="9 0 3" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_12" gltf-model="#Shelves" position="9 0 9" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_13" gltf-model="#Shelves" position="-9 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_14" gltf-model="#Shelves" position="-9 0 -9.4" scale="2 2 2"
-    static-body="shape:box"></a-entity>
-    <a-entity id="shelves_15" gltf-model="#Shelves" position="9 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
-    <a-entity id="shelves_16" gltf-model="#Shelves" position="9 0 -9.4" scale="2 2 2"
-    static-body="shape:box"></a-entity>
+      <a-entity id="shelves_15" gltf-model="#Shelves" position="9 0 -5" scale="2 2 2" static-body="shape:box"></a-entity>
+      <a-entity id="shelves_16" gltf-model="#Shelves" position="9 0 -9.4" scale="2 2 2"
+      static-body="shape:box"></a-entity>
+    </a-entity>
+
+    <!-- Boxes -->
+    <a-entity id="boxes">
+      <a-entity id="boxes_1" gltf-model="#Boxes" position="2.84496 0 10.08168" scale="2 2 2" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 -105 0"></a-entity>
+      <a-entity id="boxes_2" gltf-model="#Boxes" position="6.84707 0 6.06067" scale="1.68 2 2.14" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 -50 0"></a-entity>
+      <a-entity id="boxes_3" gltf-model="#Boxes" position="-6.98187 0 -6.13527" scale="3.67 2 1.25" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 -97.5 0"></a-entity>
+      <a-entity id="boxes_4" gltf-model="#Boxes" position="6.99129 0 -5" scale="2.99 2.33 1.48" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 -84 0"></a-entity>
+      <a-entity id="boxes_5" gltf-model="#Boxes" position="-2.20513 0 -10.19726" scale="2 2 2" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 -46 0"></a-entity>
+      <a-entity id="boxes_6" gltf-model="#Boxes" position="1.81774 0 -9.50813" scale="3 1.27 2.5" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 -133 0"></a-entity>
+    </a-entity>
+
+    <!-- Pallete -->
+    <a-entity id="Pallets">
+      <a-entity id="Pallet_1" gltf-model="./assets/models/environment/Pallet.glb" position="-1.70502 0 -5.72196" scale="2 2 2" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 39.981567902023976 0"></a-entity>
+      <a-entity id="Pallet_2" gltf-model="./assets/models/environment/Pallet.glb" position="-1.34638 0.41466 -5.72386" scale="2 2 2" static-body="shape: box; sphereRadius: NaN" velocity="" rotation=""></a-entity>
+      <a-entity id="Pallet_3" gltf-model="./assets/models/environment/Pallet.glb" position="-4.92489 1.43558 5.38749" scale="2 2 2" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="80 0 0"></a-entity>
+      <a-entity id="Pallet_4" gltf-model="./assets/models/environment/Pallet.glb" position="3.87303 1.6 6.69814" scale="2 2 2" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 -45 80"></a-entity>
+     </a-entity>
+
+    <!-- Printer -->
+    <a-entity id="Printer" gltf-model="#Printer" position="-3.21332 1.3 10.13899" scale="3.2 3.2 3.2" static-body="shape: box; sphereRadius: NaN" velocity="" rotation="0 90 0"></a-entity>
 
     <!-- Conveyor and Fire -->
     <a-entity>
@@ -138,25 +167,43 @@
 
     <!-- wall -->
     <a-box id="FrontWall" position="0 3 -12.5" src="./assets/models/environment/brick-wall.jpg" width="25" height="10"
-      static-body="shape:box" class="collidable"></a-box>
+      static-body="shape:box" class="collidable">
+      <!-- Corkboard -->
+      <a-entity
+      id="Corkboard"
+      gltf-model="./assets/models/environment/Wall_Corkboard.glb"
+      position="0 0 0.5"
+      scale="5 5 5"
+      static-body="shape: box; sphereRadius: NaN"
+      velocity=""
+      rotation=""
+      material="metalness: 1; roughness: 0; reflectivity: 1">
+    </a-entity>
+    
+    </a-box>
+
     <a-box id="BackWall" position="0 3 12.5" rotation="0 180 0" src="./assets/models/environment/brick-wall.jpg" width="25" height="10"
       static-body="shape:box" class="collidable">
+
+      <a-entity id="Clock" gltf-model="#Clock" position="3.1231 1.5 0.67709" scale="0.06 0.06 0.06" rotation="0 -90 0" static-body="shape: box; sphereRadius: NaN" velocity=""></a-entity>
+
       <a-entity id="Door" gltf-model="#Door" position="-1.5 -3 1" scale="6 6 6" rotation="0 180 0"
         static-body="shape:box"></a-entity>
     </a-box>
+
     <a-box id="LeftWall" position="-12.5 3 0" rotation="0 90 0" src="./assets/models/environment/brick-wall.jpg" width="25" height="10"
       static-body="shape:box" class="collidable"></a-box>
+
     <a-box id="RightWall" position="12.5 3 0" rotation="0 -90 0" src="./assets/models/environment/brick-wall.jpg" width="25" height="10"
       static-body="shape:box" class="collidable"></a-box>
 
     <!-- ceiling -->
     <a-plane id="Ceiling" position="0 8 0" rotation="90 0 0" src="./assets/models/environment/ceiling.jpg" width="25" height="25"
       roughness="0.5" static-body="shape:box">
-      <a-entity id="LED1" gltf-model="#LED" rotation="270 0 0" scale="1.5 1.5 1.5"
-        material="metalness: 1; roughness: 0; reflectivity: 1"></a-entity>
+      <a-entity id="Celling_Fan" gltf-model="#Celling_Fan" rotation="270 0 0" scale="1.5 1.5 1.5" material="metalness: 1; roughness: 0" position="0 0 0.8"></a-entity>
     </a-plane>
-    <a-entity id="hood" gltf-model="#Extractor" position="6 3.5 -2" rotation="0 0 0" scale="1.2 1.2 1.2"
-      material="metalness: 1; roughness: 0; reflectivity: 1"></a-entity>
+
+    <a-entity id="hood" gltf-model="#Extractor" position="5 3.5 -1" rotation="0 90 0" scale="1.5 1.3 1.5" material="metalness: 1; roughness: 0"></a-entity>
 
     <!-- Menu -->
     <a-entity id="StartMenu">
