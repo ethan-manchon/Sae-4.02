@@ -41,22 +41,17 @@ function InitTask() {
     }, 3000); // Ensure PersonDeparture is called after PersonArrival
 }
 
-const sounds = [
-    './assets/sounds/Mumbling-1.mp3',
-    './assets/sounds/Mumbling-2.mp3',
-    './assets/sounds/Mumbling-3.mp3'
-];
-
-let randomSoundIndex = Math.floor(Math.random() * sounds.length);
-let AskSound = new Audio(sounds[randomSoundIndex]);
-AskSound.volume = 0.25; // volume de la question
+let AskSound; // Define AskSound globally
 
 function AskQuestion() {
     let questions = data.Tasks;
     let question = questions.find((item) => item.id === randomNumberQuestion);
-    // console.log("Question :", question);
     let texte = question.text;
     let person = document.querySelector(`.person${randomNumberPerson}`);
+
+    AskSound = new Audio(question.sound);
+    console.log("Question Sound:", question.sound);
+    AskSound.volume = 0.25; // volume de la question
 
     console.log("son joué");
     AskSound.play();
