@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More information</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/reset.css">
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>    
+</head>
+
+<body class="m-0 p-0 overflow-x-hidden">
+    <div class="flex w-screen h-screen overflow-x-auto overflow-y-hidden scroll">
+        <!-- Title section -->
+        <section
+            class="flex-none w-screen h-screen flex justify-center items-center snap-start bg-cover bg-repeat section">
+            <h1 class="titleFont">More Information →</h1>
+        </section>
+        <!-- Schedule section -->
+        <section
+            class="flex-none w-screen h-screen flex flex-col justify-center items-center snap-start bg-cover bg-repeat gap-8 section">
+            <h2 class="titleFont">Schedule status</h2>
+            <div class="flex flex-row w-4/5 gap-8">
+                <div class="flex flex-col justify-center mt-16 gap-16">
+                    <p class="textFont text-ethan">Ethan</p>
+                    <p class="textFont text-francois">François</p>
+                </div>
+                <div class="flex flex-col justify-center gap-4">
+                    <img class="w-4/5" src="./assets/element/schedule.png" alt="schedule">
+                    <p class="textFont">Estimated time ~ 80h per person</p>
+                </div>
+            </div>
+        </section>
+        <!-- Editing tasks section -->
+        <section class="flex-none w-screen h-screen flex flex-col justify-center items-center snap-start bg-cover bg-repeat section">
+            <h2 class="titleFont">Edited tasks</h2>
+            <ul class="flex flex-col gap-6 mt-16">
+                <li class="textFont">Timer for each task → Manage game duration before launching</li>
+                <li class="textFont">Different Difficulties → Add new dark mode</li>
+                <li class="textFont">Missions requiring multiple objects → Missions require only one object</li>
+                <li class="textFont">Random events (no gravity ...) → Didn’t do it</li>
+            </ul>
+        </section>
+        <section
+            class="flex-none w-screen h-screen flex flex-col justify-center items-center snap-start bg-cover bg-repeat section">
+            <h2 class="titleFont">Potential improvement</h2>
+            <img class="w-2/3 upgrade" src="./assets/element/queue.png" alt="" />
+        </section>
+        <!-- Francois code explanation section -->
+        <section
+            class="flex-none w-screen h-screen flex flex-col justify-center items-center snap-start bg-cover gap-16 bg-repeat section">
+            <h2 class="titleFont">code explanation</h2>
+            <div class="flex flex-col gap-16 justify-center">
+                <div class="grid grid-cols-2 gap-16 justify-center items-center">
+                    <img class="" src="./assets/element/askcode.webp" alt="Code for ask" />
+                    <img class="" src="./assets/element/ask.webp" alt="Example ask" />
+                </div>
+                <div class="grid grid-cols-2 gap-16 justify-center items-center">
+                    <img class="" src="./assets/element/darkmodecode.webp" alt="Code for darkMode" />
+                    <img class="" src="./assets/element/darkmode2.webp" alt="Example darkmode" />
+                </div>
+            </div>
+        </section>
+        <!-- Ethan code explanation section -->
+        <section
+            class="flex-none w-screen h-screen flex flex-col justify-center items-center snap-start bg-cover bg-repeat section">
+            <h2 class="titleFont">code explanation</h2>
+            <div class="flex flex-row gap-6 w-full m-8 gap-16 justify-center">
+                <h3 class="subtitleFont w-1/6">HOW TO DETECT A COLLISION ?</h3>
+                <div class="flex flex-col gap-6 w-1/3">
+                    <img class="w-full" src="./assets/element/collision.webp" alt="" />
+                    <p class="textFont w-full whitespace-nowrap">example comes from updateDepositedItems()</p>
+                </div>
+            </div>
+            <div class="flex flex-row gap-6 w-full m-8 gap-16 justify-center">
+                <h3 class="subtitleFont w-1/6">Problem with native js function in vr</h3>
+                <div class="flex flex-col gap-6 w-1/3">
+                    <div class="flex flex-row items-center">
+                        <p class="textFont">requestAnimationFrame()</p>
+                        <img class="" src="./assets/icon/arrow.svg" alt="" />
+                        <p class="textFont">VR</p>
+                    </div>
+                    <img class="" src="./assets/element/tick.webp" alt="" />
+                </div>
+            </div>
+        </section>
+        <!-- web ressource section -->
+        <section
+            class="flex-none w-screen h-screen flex flex-col justify-center items-center snap-start bg-cover gap-32 bg-repeat section">
+            <h2 class="titleFont">web ressource</h2>
+            <div class="flex flex-wrap gap-16 w-1/2 justify-center ">
+                <a href="https://aframe.io/" target="_blank"><img class="w-24 h-24 link-btn" src="./assets/logo/a-frame.svg" alt="a-frame"></a>
+                <a href="https://github.com/n5ro/aframe-physics-system" target="_blank"><img class="w-24 h-24 link-btn" src="./assets/logo/github.svg" alt="github"></a>
+                <a href="https://www.polypizza.com/" target="_blank"><img class="w-24 h-24 link-btn" src="./assets/logo/pizza.svg" alt="poly pizza"></a>
+                <a href="https://threejs.org/editor/" target="_blank"><img class="w-24 h-24 link-btn" src="./assets/logo/three.svg" alt="Three JS"></a>
+                <a href="https://stackoverflow.com/" target="_blank"><img class="w-24 h-24 link-btn" src="./assets/logo/stack.svg" alt="Stack overflow"></a>
+                <a href="https://openclassrooms.com/forum/" target="_blank"><img class="w-24 h-24 link-btn" src="./assets/logo/openclassroom.svg" alt="openclassroom"></a>
+                <a href="https://www.mistral.ai/" target="_blank"><img class="w-24 h-24 link-btn" src="./assets/logo/mistral.svg" alt="AI tools"></a>
+            </div>
+        </section>
+        <!-- links section -->
+        <section
+            class="flex-none w-screen h-screen flex flex-col justify-center items-center snap-start bg-cover bg-repeat section">
+            <a class="titleFont link-btn" href="./Sae-4.02_Francois-Donzaud/index.html" target="_blank">The game</a>
+            <a class="titleFont link-btn" href="./index.html">Game presentation</a>
+            <a class="titleFont link-btn" href="https://github.com/Atyllion/Sae-4.02/" target="_blank">Repository GitHub</a>
+        </section>
+
+        <script src="./script/script.js"></script>
+</body>
+
+</html>
